@@ -1,0 +1,194 @@
+{% extends 'dashboard/base.html' %}
+{% block session %}
+    {% if email %}
+        {{ email }}
+    {% else %}
+        No user email found. Please log in to view your dashboard
+    {% endif %}
+{% endblock session %}
+{% block dashboard_content %}
+
+<!-- Main layout -->
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+
+        <!-- Section: Sales Performance KPIs -->
+        <section class="mb-4">
+
+            <!-- Add an image below the "Vehicles" heading and live time -->
+            <section class="mb-4">
+                <div class="card">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="mt-3">Vehicles</h4>
+                            </div>
+                            <div class="col-md-6 text-md-right">
+                                <div id="liveTime" class="mt-3">
+                                    <i class="fas fa-clock mr-2"></i>05:44:59 am
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add an image below the "Vehicles" heading and live time -->
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center">
+                                <img src="../../static/images/roof.png" alt="Vehicle Image" class="img-fluid">
+                            </div>
+                        </div>
+
+                        <!-- Add text below the image with enhanced styling -->
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center">
+                                <h3 class="mb-4 font-weight-bold">Start your deliveries by adding your first vehicle</h3>
+                                <p class="mb-4">Let us guide you in less than 2 mins</p>
+                            </div>
+                        </div>
+
+                        <!-- Add a button with MDB styling -->
+                        <div class="row mt-3 mb-4">
+                            <div class="col-md-12 text-center">
+                                <a href="#" class="btn btn-dark btn-lg" onclick="showAddVehicleForm()">
+                                    <i class="fas fa-plus mr-2"></i> Add Vehicle
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <!-- Modal for adding vehicle -->
+        <div class="modal" id="addVehicleModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Vehicle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" onclick="cancelVehicle()">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form to input vehicle values -->
+                        <form method="post" action="/dashboard/vehicle_table/" id="vehicleForm" class="text-white p-5" style="background-color: #343a40;">
+
+                          {% csrf_token %}
+                      
+                          <div class="form-group">
+                              <label for="vehicleName" class="mb-1">Celermont ID:</label>
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                </div>
+                                
+                                  <input type="text" placeholder="{{ celermont_id }}" name="{{ celermont_id }}" class="form-control" id="vehicleName" >
+                              </div>
+                          </div>
+                      
+                          <div class="form-group">
+                              <label for="name" class="mb-1">Name / Vehicle No</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                  </div>
+                                  <input type="text" name="vehicle_name" class="form-control" id="name" >
+                              </div>
+                          </div>
+                      
+                          <div class="form-group">
+                              <label for="email" class="mb-1">Speed Limit:</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                  </div>
+                                  <input type="text" name="speed_limit" style="height: auto;" class="form-control" id="email">
+                                  <div class="input-group-append">
+                                    <span class="input-group-text" style="height: auto;">km/h</span>
+                                </div>
+                              </div>
+                          </div>
+                      
+                          <div class="form-group">
+                              <label for="password" class="mb-1">Stationary Limit:</label>
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                </div>
+                                <input type="text" name="stat_limit" style="height: auto;" class="form-control" id="email" >
+                                <div class="input-group-append">
+                                  <span class="input-group-text" style="height: auto;">mins</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="password" class="mb-1">Mobile No:</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                              </div>
+                              <input type="text" name="mobile_no" style="height: auto;" class="form-control" id="email" >
+                              <div class="input-group-append">
+                            </div>
+                          </div>
+                        </div>
+                      
+                 
+                        <div class="form-group">
+                            <label for="password" class="mb-1">Groups:</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                              </div>
+                              <input type="text" name="groups" style="height: auto;" class="form-control" id="email" >
+                              <div class="input-group-append">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="mb-1">Zones:</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                              </div>
+                              <input type="text" name="zones" style="height: auto;" class="form-control" id="email" >
+                              <div class="input-group-append">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="mb-1">Vehicle Types:</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                              </div>
+                              <input type="text" name="vehicle_type" style="height: auto;" class="form-control" id="email" >
+                              <div class="input-group-append">
+                            </div>
+                          </div>
+                        </div>
+                      
+                          <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+                          <button type="button" class="btn btn-secondary btn-block" onclick="cancelVehicle()" data-dismiss="modal">Cancel</button>
+                      
+                      </form>
+                      
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!-- Main layout -->
+
+<script>
+    function showAddVehicleForm() {
+        $('#addVehicleModal').modal('show');
+    }
+
+    function cancelVehicle() {
+        // Add logic to handle cancellation if needed
+        $('#addVehicleModal').modal('hide');
+    }
+</script>
+
+
+{% endblock dashboard_content %}

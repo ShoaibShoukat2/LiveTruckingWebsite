@@ -1,0 +1,238 @@
+{% extends 'dashboard/base.html' %}
+{% block session %}
+    {% if email %}
+        {{ email }}
+    {% else %}
+        No user email found. Please log in to view your dashboard
+    {% endif %}
+{% endblock session %}
+{% block dashboard_content %}
+
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+    
+        <!--Section: Sales Performance KPIs-->
+        <section class="mb-4">
+            <div class="card">
+                <div class="container">
+                    <div class="row">
+                        <!-- Menu for selecting data -->
+                        <ul class="nav nav-tabs">
+                            
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" id="vehicles-tab" data-toggle="tab" href="#vehicles"><i class="fas fa-car"></i> Add Vehicle</a>
+                            </li>
+                            
+                        </ul>
+
+                        <!-- Tab content -->
+                        <div class="tab-content mt-2">
+                            <!-- Deliveries Table -->
+                            <div class="tab-pane fade show active" id="deliveries">
+                                <div class="table-responsive">
+                                    <h3 class="mt-2 mb-2">Vehicle</h3>
+                                   
+                                    <div class="container mt-5">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!-- Your existing search bar goes here -->
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Search deliveries" id="searchInput">
+
+                                                    </div>
+                                                    
+                                                    <!-- Add button on the right side -->
+                                                    <div class="input-group-append">
+                                                        <div class="col">
+                                                            <button class="btn btn-dark" type="button" onclick="addDelivery()">
+                                                                <i class="fas fa-plus"></i> Add Delivery
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                                                                                 
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="table-responsive">
+                                            <table id="deliveriesTable" class="table table-striped table-fixed">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th>Map</th>
+                                                        <th><i class="fas fa-camera"></i></th>
+                                                        <th>Delivery Order(D.O.) No.</th>
+                                                        <th>Delivery Date</th>
+                                                        <th>Company Name</th>
+                                                        <th>Address</th>
+                                                        <th>Tracking No.</th>
+                                                        <th>Tracking Status</th>
+                                                        <th>First Name</th>
+                                                        <th>Payment Mode</th>
+                                                        <th>Payment Amount</th>
+                                                        <th>Group</th>
+                                                        <th>Weight</th>
+                                                        <th>Delivery Sequence</th>
+                                                        <th>Run No.</th>
+                                                        <th>Assign To</th>
+                                                        <th>Zone</th>
+                                                        <th>Job Status</th>
+                                                        <th>POD Time</th>
+                                                        <th>Reason</th>
+                                                        <th>Received By</th>
+                                                        <!-- Add more headers as needed -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>12345</td>
+                                                        <td>John Doe</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <!-- Add more cells as needed -->
+                                                    </tr>
+                                                    <!-- Add more rows as needed -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <!-- Font Awesome CDN (add this in the head of your HTML) -->
+                                    
+                                </div>
+                            </div>
+                            <!-- Collections Table -->
+                          
+                        
+                            <!-- COD Table -->
+                           
+                            </div>
+                             <!-- Vehicles Table -->
+                             <div class="tab-pane fade" id="vehicles">
+                                <div class="table-responsive">
+                                    <h3 class="mt-2 mb-2 ml-3">Vehicles</h3>
+                                   
+                                    <div class="container mt-3">
+                                      
+                                        <div class="table-responsive">
+                                            <table id="deliveriesTable" class="table table-striped table-fixed">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th>Vehicle Name</th>
+                                                        <th>Info Recieved</th>
+                                                        <th>In Progress</th>
+                                                        <th>Completed</th>
+                                                        <th>Partially Completed</th>
+                                                        <th>Failed</th>
+                                                        <th>Last POD At</th>
+                                                        <th>Connected At</th>
+                                                        <th>Arrange</th>
+                                                        <th>View</th>
+                                                        <th>Download Route</th>
+                                                        
+                                                        <!-- Add more headers as needed -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>12345</td>
+                                                        <td>John Doe</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        
+                                                        <!-- Add more cells as needed -->
+                                                    </tr>
+                                                    <!-- Add more rows as needed -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="cod">
+                                <div class="table-responsive">
+                                    <h3 class="mt-2 mb-2 ml-3">COD</h3>
+
+                                   
+                                    <div class="container mt-3">
+                                      
+                                        <div class="table-responsive">
+                                            <table id="deliveriesTable" class="table table-striped table-fixed">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th>Vehicle Name</th>
+                                                        <th>Total Payment Amount</th>
+                                                        <th>Driver Collected</th>
+                                                        <th>Admin Collected</th>
+                                                        <th>(Total Payment Amount) - (Driver Collected)</th>
+                                                        <th>(Admin Collected) - (Driver Collected)</th>
+                                                        
+                                                        
+                                                        <!-- Add more headers as needed -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>12345</td>
+                                                        <td>John Doe</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                        <td>123 Main St</td>
+                                                       
+                                                        <!-- Add more cells as needed -->
+                                                    </tr>
+                                                    <!-- Add more rows as needed -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+                        </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!--Section: Sales Performance KPIs-->
+
+        <!-- Additional content here -->
+
+
+
+    </div>
+</main>
+
+{% endblock dashboard_content %}
+

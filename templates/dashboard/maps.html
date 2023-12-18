@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+{% block session %}
+    {% if email %}
+        {{ email }}
+    {% else %}
+        No user email found. Please log in to view your dashboard
+    {% endif %}
+{% endblock session %}
+{% block dashboard_content %}
+<!-- Main layout -->
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        
+        <!-- Google Map container -->
+        <div id="map" style="height: 400px;"></div>
+    </div>
+</main>
+<!-- Main layout -->
+
+<!-- Include the Google Maps API script with your API key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ4Nz6vjxJebaG2aD0zRWOwSbactF3d6c&callback=initMap" 
+        async defer></script>
+
+<!-- Your custom JavaScript for initializing the map -->
+<script>
+    function initMap() {
+        // Specify the initial center and zoom level
+        var myLatLng = {lat: -34.397, lng: 150.644};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 8
+        });
+
+        // You can add additional markers or customization here
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
+
+{% endblock dashboard_content %}

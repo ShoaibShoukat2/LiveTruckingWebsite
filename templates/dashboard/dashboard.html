@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block session %}
+    {% if email %}
+        {{ email }}
+    {% else %}
+        No user email found. Please log in to view your dashboard
+    {% endif %}
+{% endblock session %}
+{% block dashboard_content %}
+
+
+{% endblock dashboard_content %}
+
